@@ -8,6 +8,10 @@ package exceptions;
  *
  * @author Pc
  */
-public class EntidadNoEncontradaException {
+public class EntidadNoEncontradaException extends Exception{
+
+    public EntidadNoEncontradaException(String mensaje) {
+        super(mensaje);
+    }
     
 }
