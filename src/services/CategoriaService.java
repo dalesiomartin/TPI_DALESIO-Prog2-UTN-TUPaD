@@ -5,8 +5,10 @@
 package services;
 
 import entities.Categoria;
+import exceptions.EntidadNoEncontradaException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  *
@@ -14,13 +16,21 @@ import java.util.List;
  */
 public class CategoriaService {
     private List<Categoria> categorias;
-
+    
+    //constructor: creo la lista vacia
     public CategoriaService() {
         categorias = new ArrayList<>();
     }
     
     public List<Categoria> listar() {
-        return null;
+        List<Categoria>resultado = new ArrayList<>(); 
+        for (Categoria c : categorias) {
+            //solo muestro las que no estan eliminadas
+            if (!c.isEliminado()) {
+                resultado.add(c);
+            }
+        }
+        return resultado;
     }
     
     public void agregar(Categoria categoria){
@@ -41,6 +51,16 @@ public class CategoriaService {
         categorias.add(categoria);
     
     }
+    
+    public Categoria buscarPorID(Long id) throws EntidadNoEncontradaException{
+        for (Categoria c : categorias) {
+            if (c.getId().equals(id) && !c.isEliminado()) {
+                return c;
+            }  
+        }
+        throw new EntidadNoEncontradaException("No existe categoria con id: " + id);
+    }
+    
     
     
     public void eliminar(){}
