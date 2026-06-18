@@ -22,6 +22,12 @@ public class CategoriaService {
         categorias = new ArrayList<>();
     }
     
+    //getter
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+       
+    
     public List<Categoria> listar() {
         List<Categoria>resultado = new ArrayList<>(); 
         for (Categoria c : categorias) {
@@ -33,9 +39,10 @@ public class CategoriaService {
         return resultado;
     }
     
+    
     public void agregar(Categoria categoria){
         
-        //1° verificacion. Valido nombre
+        //1° verificacion. Valido nombre que no sea null o vacio con espacios
         if (Validaciones.textoValido(categoria.getNombre())) {
             throw new IllegalArgumentException("El nombre de la categoria debe ser obligatorio");
         }
@@ -63,15 +70,30 @@ public class CategoriaService {
     
     
     
-    public void eliminar(){}
+    public void eliminar(Long id) throws EntidadNoEncontradaException{
+        
+        Categoria categoria = buscarPorID(id);
+        
+        categoria.setEliminado(true);
+    
+    }
+    
+   
+    public void editar(Long id, String nombre, String descripcion)throws EntidadNoEncontradaException{
+        Categoria categoria = buscarPorID(id);
+        if (!Validaciones.textoValido(nombre)) {
+           throw new IllegalArgumentException("Nombre obligatorio");
+        }
+        categoria.setNombre(nombre);
+         
+        
+        if (!Validaciones.textoValido(descripcion)) {
+            throw new IllegalArgumentException("Descripcion obligatoria");
+        }
+        categoria.setDescripcion(descripcion);
+    
+    }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
+ 
 }
