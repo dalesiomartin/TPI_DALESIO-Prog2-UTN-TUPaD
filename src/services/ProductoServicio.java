@@ -55,12 +55,12 @@ public class ProductoServicio {
     
     
     
-    public Producto agregar(String nombre, Double precio, String descripcion, int stock,
-                             String imagen, boolean disponible, Long categoriaId) throws StockInvalidoException {
+    public Producto crear(String nombre, Double precio, String descripcion, int stock,
+                             String imagen, boolean disponible, Long categoriaId) {
 
         // 1° nombre obligatorio
         if (!Validaciones.textoValido(nombre)) {
-            throw new IllegalArgumentException("El nombre del producto debe ser obligatorio");
+            throw new IllegalArgumentException("El nombre del producto es obligatorio");
         }
 
         // 2° duplicados (mismo criterio que en Categoria)
@@ -79,7 +79,7 @@ public class ProductoServicio {
         }
 
         // 4° la categoria debe existir y no estar eliminada
-        Categoria categoria = categoriaservicio.buscarPorID(categoriaId); // ya lanza EntidadNoEncontradaException si no existe
+        Categoria categoria = categoriaservicio.buscarCatPorID(categoriaId); // ya lanza EntidadNoEncontradaException si no existe
 
         Producto nuevo = new Producto(nombre, precio, descripcion, stock, imagen, disponible,
                     categoria, contadorId++, false, LocalDateTime.now());
@@ -87,7 +87,7 @@ public class ProductoServicio {
         return nuevo;
     }
         
-    public Producto buscarPorID(Long id) {
+    public Producto buscarProdPorID(Long id) {
         for (Producto p : productos) {
             if (p.getId().equals(id) && !p.isEliminado()) {
                 return p;
@@ -96,44 +96,33 @@ public class ProductoServicio {
             throw new EntidadNoEncontradaException("No existe producto con id: " + id);
     }
     
-    
-    public void editar(Long id, String nombre, Double precio, String descripcion,
-                        Integer stock, String imagen, Boolean disponible, Long categoriaId) throws StockInvalidoException {
+    //solo traere lo 3 parametros
+    public void editar(Long id, Double precio,Integer stock, Long categoriaId) {
+ 
+        Producto producto = buscarProdPorID(id);
 
-        Producto producto = buscarPorID(id);
-
-        if (Validaciones.textoValido(nombre)) {
-            producto.setNombre(nombre);
-        }
         if (precio != null) {
             if (!Validaciones.numeroPositivo(precio)) {
                 throw new StockInvalidoException("El precio no puede ser negativo");
             }
             producto.setPrecio(precio);
         }
-        if (Validaciones.textoValido(descripcion)) {
-            producto.setDescripcion(descripcion);
-        }
+       
         if (stock != null) {
             if (!Validaciones.cantidadValida(stock)) {
                 throw new StockInvalidoException("El stock no puede ser negativo");
             }
             producto.setStock(stock);
         }
-        if (Validaciones.textoValido(imagen)) {
-            producto.setImagen(imagen);
-        }
-        if (disponible != null) {
-            producto.setDisponible(disponible);
-        }
+       
         if (categoriaId != null) {
-            Categoria nuevaCategoria = categoriaservicio.buscarPorID(categoriaId);
+            Categoria nuevaCategoria = categoriaservicio.buscarCatPorID(categoriaId);
             producto.setCategoria(nuevaCategoria);
         }
     }
 
     public void eliminar(Long id) {
-        Producto producto = buscarPorID(id);
+        Producto producto = buscarProdPorID(id);
         producto.setEliminado(true); // baja lógica
     }
     

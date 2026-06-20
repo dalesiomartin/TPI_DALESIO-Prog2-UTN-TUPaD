@@ -17,7 +17,7 @@ public class Validaciones {
     
     //valido nros positivos
     public static boolean numeroPositivo(double num){
-        return num >= 0;
+        return num >= 0; //!= null, ==caracteres
     }
     
     public static boolean cantidadValida(int cant){
