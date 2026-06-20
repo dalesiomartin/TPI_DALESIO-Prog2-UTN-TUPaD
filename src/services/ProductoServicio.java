@@ -124,6 +124,7 @@ public class ProductoServicio {
     public void eliminar(Long id) {
         Producto producto = buscarProdPorID(id);
         producto.setEliminado(true); // baja lógica
+        
     }
     
 }

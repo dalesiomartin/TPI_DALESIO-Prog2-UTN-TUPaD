@@ -12,15 +12,13 @@ import java.time.LocalDateTime;
  */
 public class DetallePedido extends Base{
     
-    private static Long contadorDetalle = 1L;
-    
     private int cantidad;
     private Double subtotal;
     private Producto producto;
     
 
-    DetallePedido(int cantidad, Producto producto) {
-        super(contadorDetalle++, false, LocalDateTime.now());
+    DetallePedido(Long id, int cantidad, Producto producto) {
+        super(id, false, LocalDateTime.now());
         this.cantidad = cantidad;
         this.producto = producto;
         calcularSubtotal(); //se calcula al crearse el pedido

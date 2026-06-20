@@ -103,8 +103,8 @@ public class Pedido extends Base implements Calculable{
                 
     }
     
-    public void addDetallePedido(int cantidad, Producto p){
-        DetallePedido nuevoDetalle = new DetallePedido(cantidad, p); //COMPOSICION
+    public void addDetallePedido(long idDetalle, int cantidad, Producto p){
+        DetallePedido nuevoDetalle = new DetallePedido(idDetalle,cantidad, p); //COMPOSICION
         this.detalles.add(nuevoDetalle);
 
         calcularTotal(); //cada vez que agrego/elimino un producto debo recalcular el total

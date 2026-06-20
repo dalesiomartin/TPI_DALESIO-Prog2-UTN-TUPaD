@@ -71,15 +71,15 @@ public class Main {
 
         // Pedido 1 Admin
         admini.agregarPedido(pe1);
-        pe1.addDetallePedido(2, p1); 
-        pe1.addDetallePedido(1, p3); 
-        pe1.addDetallePedido(1, p5); 
+//        pe1.addDetallePedido(2, p1); 
+//        pe1.addDetallePedido(1, p3); 
+//        pe1.addDetallePedido(1, p5); 
         
         // Pedido 2 Admin
         admini.agregarPedido(pe2);
-        pe2.addDetallePedido(1, p2); 
-        pe2.addDetallePedido(2, p4); 
-        pe2.addDetallePedido(1, p6); 
+//        pe2.addDetallePedido(1, p2); 
+//        pe2.addDetallePedido(2, p4); 
+//        pe2.addDetallePedido(1, p6); 
         
         // PEDIDOS USER 
         LocalDate fechape3 = LocalDate.of(2026, Month.APRIL, 15);
@@ -90,15 +90,15 @@ public class Main {
        
         // Pedido 1 User
         user.agregarPedido(pe3);    
-        pe3.addDetallePedido(1, p1); 
-        pe3.addDetallePedido(1, p4); 
-        pe3.addDetallePedido(1, p6); 
+//        pe3.addDetallePedido(1, p1); 
+//        pe3.addDetallePedido(1, p4); 
+//        pe3.addDetallePedido(1, p6); 
         
         // Pedido 2 User
         user.agregarPedido(pe4);
-        pe4.addDetallePedido(3, p2); 
-        pe4.addDetallePedido(2, p5); 
-        pe4.addDetallePedido(1, p6); 
+//        pe4.addDetallePedido(3, p2); 
+//        pe4.addDetallePedido(2, p5); 
+//        pe4.addDetallePedido(1, p6); 
         
         //MOSTRAR LA INFORMACION DE LOS PEDIDOS POR USUARIO
         mostrarInfo(listaUsuarios);
