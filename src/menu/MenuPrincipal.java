@@ -33,7 +33,7 @@ public class MenuPrincipal {
     
     public void iniciar(){
         boolean salir = false;
-        while (salir) {            
+        while (!salir) {            
             System.out.println("\n=== SISTEMA DE PEDIDOS (FOOD STORE) ===");
             System.out.println("1. Categorias");
             System.out.println("2. Productos");
@@ -46,7 +46,7 @@ public class MenuPrincipal {
             
             switch (opcion) {
                 case "1":
-                    new CategoriaMenu(categoriaServicio, productoServicio,sc).mostar();
+                    new CategoriaMenu(categoriaServicio, productoServicio,sc).mostrar();
                     break;
                 case "2":
                     new ProductoMenu(productoServicio, categoriaServicio, sc).mostrar();
@@ -62,14 +62,14 @@ public class MenuPrincipal {
                 case "0":
                     salir = true;
                     System.out.println("Saliendo del sistema...");
-                    new CategoriaMenu(categoriaServicio, productoServicio,sc).mostar();
+                    new CategoriaMenu(categoriaServicio, productoServicio,sc).mostrar();
                     break;
                 default:
                     System.out.println("Opción inválida.");
             }
             
         }
-    
+        sc.close();
     
     }
     

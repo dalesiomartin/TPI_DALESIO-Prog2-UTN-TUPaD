@@ -16,12 +16,12 @@ import services.ProductoServicio;
  * @author Pc
  */
 public class CategoriaMenu {
-    private CategoriaServicio categoriaService;
+    private CategoriaServicio categoriaServicio;
     private ProductoServicio productoServicio;
     private Scanner sc;
 
     public CategoriaMenu(CategoriaServicio categoriaService, ProductoServicio productoServicio, Scanner sc) {
-        this.categoriaService = categoriaService;
+        this.categoriaServicio = categoriaService;
         this.productoServicio = productoServicio;
         this.sc = sc;
     }
@@ -51,7 +51,7 @@ public class CategoriaMenu {
     }
     
     public void listar(){
-        List<Categoria> categorias = categoriaService.listar();
+        List<Categoria> categorias = categoriaServicio.listar();
         if (categorias.isEmpty()) {
             System.out.println("No hay categorías cargadas.");
             return;
@@ -69,7 +69,7 @@ public class CategoriaMenu {
             System.out.print("Descripción: ");
             String descripcion = sc.nextLine().trim();  
             
-            Categoria nueva = categoriaService.crear(nombre, descripcion);
+            Categoria nueva = categoriaServicio.crear(nombre, descripcion);
             System.out.println("Categoría creada con id: " + nueva.getId());
             
         } catch (IllegalArgumentException e) {
@@ -83,7 +83,7 @@ public class CategoriaMenu {
             System.out.print("Ingrese el id de la categoría a editar: ");
             Long id = Long.parseLong(sc.nextLine().trim());
 
-            Categoria actual = categoriaService.buscarCatPorID(id);
+            Categoria actual = categoriaServicio.buscarCatPorID(id);
             System.out.println("Editando: " + actual);
             System.out.println("(Toque ENTER para mantener el valor actual)");
 
@@ -93,7 +93,7 @@ public class CategoriaMenu {
             System.out.print("Nueva descripción: ");
             String descripcion = sc.nextLine().trim();
             
-            categoriaService.editar(id, nombre, descripcion);
+            categoriaServicio.editar(id, nombre, descripcion);
             System.out.println("Categoría actualizada correctamente.");
             
         } catch (NumberFormatException e) {
@@ -109,12 +109,12 @@ public class CategoriaMenu {
             System.out.print("Ingrese el id de la categoría a eliminar: ");
             Long id = Long.parseLong(sc.nextLine().trim());
 
-            Categoria categoria = categoriaService.buscarCatPorID(id);
+            Categoria categoria = categoriaServicio.buscarCatPorID(id);
             System.out.print("¿Confirma eliminar la categoría \"" + categoria.getNombre() + "\"? (S/N): ");
             String confirmacion = sc.nextLine().trim().toUpperCase();
             
             if (confirmacion.equals("S")) {
-                categoriaService.eliminar(id);
+                categoriaServicio.eliminar(id);
                 System.out.println("Categoría eliminada (baja lógica).");
             } else {
                 System.out.println("Operación cancelada.");
