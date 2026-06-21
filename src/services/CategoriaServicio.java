@@ -92,7 +92,7 @@ public class CategoriaServicio {
         Categoria categoria = buscarCatPorID(id);
         
         if (tieneProductosActivos(id)) {
-            throw new IllegalArgumentException("No se puede eliminar la categoria '" + categoria.getNombre() +
+            throw new IllegalStateException("No se puede eliminar la categoria '" + categoria.getNombre() +
                 "' porque tiene productos activos asociados.");
         }
         categoria.setEliminado(true); 
