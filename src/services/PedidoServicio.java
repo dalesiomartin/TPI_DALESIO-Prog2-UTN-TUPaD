@@ -111,12 +111,12 @@ public class PedidoServicio {
         }
     }
     
-    public void Eliminar(Long id){
+    public void eliminar(Long id){
         Pedido pedido = buscarPedPorID(id);
         pedido.setEliminado(true);
-        for (var detalle : pedido.getDetalles()) {
-            detalle.setEliminado(true);
-        }
+//        for (var detalle : pedido.getDetalles()) {
+//            detalle.setEliminado(true);
+//        }
     }
     
     

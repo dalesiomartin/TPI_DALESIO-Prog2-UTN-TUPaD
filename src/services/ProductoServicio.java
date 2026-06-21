@@ -72,7 +72,7 @@ public class ProductoServicio {
 
         // 3° precio y stock no negativos (regla de la consigna -> StockInvalidoException)
         if (!Validaciones.numeroPositivo(precio)) {
-            throw new StockInvalidoException("El precio no puede ser negativo");
+            throw new IllegalArgumentException("El precio no puede ser negativo");
         }
         if (!Validaciones.cantidadValida(stock)) {
             throw new StockInvalidoException("El stock no puede ser negativo");

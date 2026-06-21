@@ -129,7 +129,7 @@ public class UsuarioMenu {
             String modificarRol = sc.nextLine().trim().toUpperCase();
             Rol rol = null;
             if (modificarRol.equals("S")) {
-                pedirRol();
+                rol = pedirRol();
             }
                   
             usuarioServicio.editar(id, nombre, apellido, mail, celular, rol);

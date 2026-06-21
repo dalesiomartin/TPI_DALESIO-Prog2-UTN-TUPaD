@@ -50,7 +50,7 @@ public class CategoriaMenu {
         }
     }
     
-    public void listar(){
+    private void listar(){
         List<Categoria> categorias = categoriaServicio.listar();
         if (categorias.isEmpty()) {
             System.out.println("No hay categorías cargadas.");
@@ -61,7 +61,7 @@ public class CategoriaMenu {
         }
     }
     
-    public void crear(){
+    private void crear(){
         try {
             System.out.print("Nombre: ");
             String nombre = sc.nextLine().trim();
@@ -77,7 +77,7 @@ public class CategoriaMenu {
         }
     }
     
-    public void editar(){
+    private void editar(){
         listar();
         try {
             System.out.print("Ingrese el id de la categoría a editar: ");
@@ -103,7 +103,7 @@ public class CategoriaMenu {
         }
 
     }
-    public void eliminar(){
+    private void eliminar(){
         listar();
         try {
             System.out.print("Ingrese el id de la categoría a eliminar: ");

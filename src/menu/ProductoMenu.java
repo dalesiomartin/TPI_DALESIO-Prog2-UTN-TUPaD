@@ -24,11 +24,11 @@ public class ProductoMenu {
 
     public ProductoMenu(ProductoServicio productoServicio, CategoriaServicio categoriaService, Scanner sc) {
         this.productoServicio = productoServicio;
-        this.categoriaServicio = categoriaService;
+        this.categoriaServicio = categoriaServicio;
         this.sc = sc;
     }
     
-      public void mostrar() {
+    public void mostrar() {
         boolean volver = false;
         while (!volver) {
             System.out.println("\n--- GESTIÓN DE PRODUCTOS ---");
@@ -90,7 +90,7 @@ public class ProductoMenu {
         }
     }
     
-     private void crear() {
+    private void crear() {
         listarCategoriasDisponibles();
         try {
             System.out.print("Nombre: ");
@@ -126,7 +126,7 @@ public class ProductoMenu {
         }
     }
     
-    public void editar(){
+    private void editar(){
         listar();
         try {
             System.out.print("Ingrese el id del producto a editar: ");
@@ -136,22 +136,27 @@ public class ProductoMenu {
             System.out.println("Editando: " + actual);
             System.out.println("(Toque ENTER para mantener el valor actual)");
             
-            System.out.print("Nuevo nombre: ");
-            String nombre = sc.nextLine().trim();
-
+//            System.out.print("Nuevo nombre: ");
+//            String nombre = sc.nextLine().trim();
+            
+            // PRECIO
             System.out.print("Nuevo precio: ");
             String precioTexto = sc.nextLine().trim();
-            Double precio = precioTexto.isBlank() ? null : Double.parseDouble(precioTexto);
-
-            System.out.print("Nueva descripción: ");
-            String descripcion = sc.nextLine().trim();
-
+            Double precio = null;
+            if (!precioTexto.isBlank()) {
+                precio = Double.parseDouble(precioTexto);
+            }
+            
+//            System.out.print("Nueva descripción: ");
+//            String descripcion = sc.nextLine().trim();
+            
+            // STOCK
             System.out.print("Nuevo stock: ");
             String stockTexto = sc.nextLine().trim();
             Integer stock = stockTexto.isBlank() ? null : Integer.parseInt(stockTexto);
 
-            System.out.print("Nueva imagen: ");
-            String imagen = sc.nextLine().trim();
+//            System.out.print("Nueva imagen: ");
+//            String imagen = sc.nextLine().trim();
             
             System.out.print("¿Modificar disponibilidad? (S/N): ");
             String modificarDisp = sc.nextLine().trim().toUpperCase();
@@ -161,6 +166,7 @@ public class ProductoMenu {
                 disponible = sc.nextLine().trim().equalsIgnoreCase("S");
             }
             
+            // CATEGORIA
             System.out.print("¿Modificar categoría? (S/N): ");
             String modificarCat = sc.nextLine().trim().toUpperCase();
             Long categoriaId = null;

@@ -57,7 +57,7 @@ public class UsuarioServicio {
         validarMailUnico(mail, null);
         
         
-        Usuario nuevo = new Usuario(nombre, apellido, mail, celular, contrasenia, Rol.USUARIO, contadorId++, false, LocalDateTime.now());
+        Usuario nuevo = new Usuario(nombre, apellido, mail, celular, contrasenia, rol, contadorId++, false, LocalDateTime.now());
         usuarios.add(nuevo);
         return nuevo;
     

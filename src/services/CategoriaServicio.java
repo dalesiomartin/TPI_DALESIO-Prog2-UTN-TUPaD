@@ -54,7 +54,7 @@ public class CategoriaServicio {
         }
         
         //3° verificacion. Valido Descripcion que no sea null o vacio con espacios
-        if (!Validaciones.textoValido(nombre)) {
+        if (!Validaciones.textoValido(descripcion)) {
             throw new IllegalArgumentException("La descripcion de la categoria es obligatorio");
         }
         
@@ -102,7 +102,7 @@ public class CategoriaServicio {
     // y categ no puedo eliminarla si existe un producto activo asocia
     private boolean tieneProductosActivos(Long categId){
         for (Producto p : productoServicio.listar()) {
-            if (!p.isEliminado() && p.getCategoria() != null && 
+            if (p.getCategoria() != null && 
                     p.getCategoria().getId().equals(categId)) {
                 return true;
             }
