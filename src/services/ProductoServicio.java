@@ -20,12 +20,12 @@ public class ProductoServicio {
     
     
     private List<Producto> productos;
-    private CategoriaService categoriaservicio;
+    private CategoriaServicio categoriaservicio;
     private Long contadorId;
     
     
     //constructor
-    public ProductoServicio(CategoriaService categoriaservicio) {
+    public ProductoServicio(CategoriaServicio categoriaservicio) {
         productos = new ArrayList<>();
         this.categoriaservicio = categoriaservicio;
         this.contadorId = 1L;

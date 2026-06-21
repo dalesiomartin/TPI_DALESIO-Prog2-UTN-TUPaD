@@ -100,6 +100,24 @@ public class PedidoServicio {
         throw new EntidadNoEncontradaException("No existe pedido con id: " + id);
     }
     
+    public void actualizarEstadoYFormaPago(Long id, Estado estado, FormaPago formaPago){
+        Pedido pedido = buscarPedPorID(id);
+        
+        if (estado != null) {
+            pedido.setEstado(estado);
+        }
+        if (formaPago != null) {
+            pedido.setFormaPago(formaPago);
+        }
+    }
+    
+    public void Eliminar(Long id){
+        Pedido pedido = buscarPedPorID(id);
+        pedido.setEliminado(true);
+        for (var detalle : pedido.getDetalles()) {
+            detalle.setEliminado(true);
+        }
+    }
     
     
 }

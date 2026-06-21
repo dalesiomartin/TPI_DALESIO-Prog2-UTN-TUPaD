@@ -16,13 +16,13 @@ import java.util.List;
  *
  * @author Pc
  */
-public class CategoriaService {
+public class CategoriaServicio {
     private List<Categoria> categorias;
     private Long contadorId; 
     private ProductoServicio productoServicio; 
     
     //constructor: creo la lista vacia
-    public CategoriaService() {
+    public CategoriaServicio() {
         categorias = new ArrayList<>();
         contadorId = 1L;
     }
