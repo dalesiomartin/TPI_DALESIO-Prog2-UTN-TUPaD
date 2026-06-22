@@ -5,8 +5,12 @@
 package exceptions;
 
 /**
+ * Excepción de negocio utilizada cuando una operación
+ * no puede realizarse porque una entidad no existe
+ * o fue dada de baja lógicamente.
  *
- * @author Pc
+ * Se implementa como RuntimeException porque representa
+ * una condición esperable dentro del flujo de la aplicación.
  */
 public class EntidadNoEncontradaException extends RuntimeException{
 

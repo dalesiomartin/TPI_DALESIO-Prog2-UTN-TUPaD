@@ -97,22 +97,35 @@ public class ProductoServicio {
     }
     
     //solo traere lo 3 parametros
-    public void editar(Long id, Double precio,Integer stock,Boolean disponible, Long categoriaId) {
+    public void editar(Long id, String nombre, Double precio, String descripcion,
+                    Integer stock, String imagen, Boolean disponible, Long categoriaId) {
  
         Producto producto = buscarProdPorID(id);
-
+        
+        if (Validaciones.textoValido(nombre)) {
+        producto.setNombre(nombre);
+        }
+        
         if (precio != null) {
             if (!Validaciones.numeroPositivo(precio)) {
                 throw new StockInvalidoException("El precio no puede ser negativo");
             }
             producto.setPrecio(precio);
         }
-       
+        
+        if (Validaciones.textoValido(descripcion)) {
+        producto.setDescripcion(descripcion);
+        }
+        
         if (stock != null) {
             if (!Validaciones.stockValido(stock)) {
                 throw new StockInvalidoException("El stock no puede ser negativo");
             }
             producto.setStock(stock);
+        }
+        
+        if (Validaciones.textoValido(imagen)) {
+        producto.setImagen(imagen);
         }
         
         if (disponible != null) {

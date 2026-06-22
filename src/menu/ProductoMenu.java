@@ -136,8 +136,8 @@ public class ProductoMenu {
             System.out.println("Editando: " + actual);
             System.out.println("(Toque ENTER para mantener el valor actual)");
             
-//            System.out.print("Nuevo nombre: ");
-//            String nombre = sc.nextLine().trim();
+            System.out.print("Nuevo nombre: ");
+            String nombre = sc.nextLine().trim();
             
             // PRECIO
             System.out.print("Nuevo precio: ");
@@ -147,16 +147,16 @@ public class ProductoMenu {
                 precio = Double.parseDouble(precioTexto);
             }
             
-//            System.out.print("Nueva descripción: ");
-//            String descripcion = sc.nextLine().trim();
+            System.out.print("Nueva descripción: ");
+            String descripcion = sc.nextLine().trim();
             
             // STOCK
             System.out.print("Nuevo stock: ");
             String stockTexto = sc.nextLine().trim();
             Integer stock = stockTexto.isBlank() ? null : Integer.parseInt(stockTexto);
 
-//            System.out.print("Nueva imagen: ");
-//            String imagen = sc.nextLine().trim();
+            System.out.print("Nueva imagen: ");
+            String imagen = sc.nextLine().trim();
             
             System.out.print("¿Modificar disponibilidad? (S/N): ");
             String modificarDisp = sc.nextLine().trim().toUpperCase();
@@ -176,7 +176,7 @@ public class ProductoMenu {
                 categoriaId = Long.parseLong(sc.nextLine().trim());
             }
             
-            productoServicio.editar(id, precio, stock, categoriaId);
+            productoServicio.editar(id, nombre, precio, descripcion, stock, imagen, disponible, categoriaId);
             System.out.println("Producto actualizado correctamente.");
             
         } catch (NumberFormatException e) {

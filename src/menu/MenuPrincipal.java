@@ -53,11 +53,9 @@ public class MenuPrincipal {
                     break;
                 case "3":
                     new UsuarioMenu(usuarioServicio, sc).mostrar();
-                    System.out.println("Menú de usuarios pendiente de implementar");
                     break;
                 case "4":
                     new PedidoMenu(pedidoServicio, usuarioServicio, productoServicio, sc).mostrar();
-                    System.out.println("Menú de pedidos pendiente de implementar");
                     break;
                 case "0":
                     salir = true;

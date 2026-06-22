@@ -5,8 +5,11 @@
 package exceptions;
 
 /**
+ * Excepción de negocio utilizada cuando se incumplen
+ * reglas relacionadas con stock o cantidades.
  *
- * @author Pc
+ * Se propaga desde la capa de servicios y es capturada
+ * en la capa de menú para informar al usuario.
  */
 public class StockInvalidoException extends RuntimeException{
 
