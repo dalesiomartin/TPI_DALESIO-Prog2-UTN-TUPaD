@@ -85,8 +85,20 @@ public class PedidoServicio {
         if (pedido.getDetalles().isEmpty()) {
            throw new IllegalStateException("No se puede confirmar un pedido sin detalles"); 
         }
+        
+        for (var detalle : pedido.getDetalles()) {
+            Producto prodOriginal = detalle.getProducto();
+            int nuevaCantidadStock = prodOriginal.getStock() - detalle.getCantidad();
+        
+        // Actualizamos el estado del producto en memoria
+        prodOriginal.setStock(nuevaCantidadStock);
+        }
+        
         pedido.calcularTotal();
         pedidos.add(pedido);
+        
+        // Vinculación con el historial del Usuario
+        pedido.getUsuario().agregarPedido(pedido);
     }
     
     //Paso Auxiliar: en caso que falle el pedido durante la carga, desde el menu se llama

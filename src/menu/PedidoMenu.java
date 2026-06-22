@@ -154,7 +154,26 @@ public class PedidoMenu {
         if (!huboError) {
             try {
                 pedidoServicio.confirmarPedido(pedido);
-                System.out.println("Pedido creado con id: " + pedido.getId() + " | Total: $" + pedido.getTotal());
+        
+                // TICKET COMPLETO
+            System.out.println("\n==================================================");
+            System.out.println("          ¡PEDIDO CONFIRMADO CON ÉXITO!           ");
+            System.out.println("==================================================");
+            System.out.println(pedido); // Invoca al toString() de Pedido
+            System.out.println("--------------------------------------------------");
+            System.out.println("Detalle de los productos:");
+        
+            // Recorremos los detalles cargados en el objeto que está en memoria
+            for (var detalle : pedido.getDetalles()) {
+                if (!detalle.isEliminado()) {
+                    System.out.println("   " + detalle); // Invoca al toString() de DetallePedido
+                }
+            }
+        
+            System.out.println("--------------------------------------------------");
+            System.out.printf(" TOTAL FINAL: $%.2f%n", pedido.getTotal());
+            System.out.println("==================================================\n");
+        
             } catch (IllegalStateException e) {
                 System.out.println("Error: " + e.getMessage());
             }

@@ -131,8 +131,11 @@ public class Pedido extends Base implements Calculable{
 
     @Override
     public String toString() {
-        return String.format("> Pedido #%d | Fecha: %s | Estado: %s | FormaPago: %s",
-                getId(), fecha, estado, formaPago);
+        String nombreUsuario = (usuario != null) ? usuario.getNombre() + " " + usuario.getApellido() : "Sin Usuario";
+    
+        // Al final de la cadena agregamos de forma explícita el TOTAL del ticket
+        return String.format("> Pedido #%d | Cliente: %s | Fecha: %s | Estado: %s | FormaPago: %s | TOTAL: $%.2f",
+            getId(), nombreUsuario, fecha, estado, formaPago, this.total);
     }
     
     
