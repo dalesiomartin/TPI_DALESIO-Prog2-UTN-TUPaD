@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 import services.CategoriaServicio;
 import services.ProductoServicio;
+import services.Validaciones;
 
 /**
  *
@@ -67,6 +68,9 @@ public class ProductoMenu {
     } 
     
     private void listarPorCategoria() {
+        if (services.Validaciones.esListaVacia(categoriaServicio.listar(), "No hay categorías cargadas en el sistema.")) {
+            return;
+        }
         listarCategoriasDisponibles();
         try {
             System.out.print("Ingrese el id de la categoría: ");
@@ -91,7 +95,9 @@ public class ProductoMenu {
     }
     
     private void crear() {
-        
+        if (Validaciones.esListaVacia(categoriaServicio.listar(), "No hay categorias cargadas. Cree una categoria antes de continuar.")) {
+            return; 
+        }
         try {
             System.out.print("Nombre: ");
             String nombre = sc.nextLine().trim();
@@ -128,6 +134,9 @@ public class ProductoMenu {
     }
     
     private void editar(){
+        if (services.Validaciones.esListaVacia(productoServicio.listar(), "No hay productos cargados en el sistema para editar.")) {
+            return; // Corta el flujo de inmediato
+        }
         listar();
         try {
             System.out.print("Ingrese el id del producto a editar: ");
@@ -202,6 +211,9 @@ public class ProductoMenu {
     }
     
     private void eliminar() {
+        if (services.Validaciones.esListaVacia(productoServicio.listar(), "No hay productos cargados en el sistema para eliminar.")) {
+            return; // Corta el flujo de inmediato
+        }
         listar();
         try {
             System.out.print("Ingrese el id del producto a eliminar: ");

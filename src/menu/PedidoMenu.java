@@ -16,6 +16,7 @@ import java.util.Scanner;
 import services.PedidoServicio;
 import services.ProductoServicio;
 import services.UsuarioServicio;
+import services.Validaciones;
 
 /**
  *
@@ -77,6 +78,10 @@ public class PedidoMenu {
     }
     
     private void crearPedidoConDetalles(){
+        if (Validaciones.esListaVacia(usuarioServicio.listar(), "No hay usuarios cargados en el sistema. Cree un usuario antes de continuar.")) {
+            return; 
+        }
+
         // Paso 1: seleccionar usuario
         listarUsuariosDisponibles(); 
         
@@ -196,6 +201,12 @@ public class PedidoMenu {
     }
     
     private void actualizarEstado(){
+        // 1. El padre controla de forma directa su condición de ejecución
+        if (Validaciones.esListaVacia(pedidoServicio.listar(), "No hay pedidos cargados en el sistema.")) {
+            return;
+        }
+        
+        // 2. Si pasó el control anterior, recién ahí invoca los procesos auxiliares
         listar();
         try {
             System.out.print("Ingrese el id del pedido a actualizar: ");
@@ -234,6 +245,10 @@ public class PedidoMenu {
     }
     
     private void eliminar(){
+        if (Validaciones.esListaVacia(pedidoServicio.listar(), "No hay pedidos cargados en el sistema.")) {
+            return;
+        }
+        
         listar();
         try {
             System.out.print("Ingrese el id del pedido a eliminar: ");

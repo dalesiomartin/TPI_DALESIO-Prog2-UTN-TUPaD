@@ -10,6 +10,7 @@ import exceptions.EntidadNoEncontradaException;
 import java.util.List;
 import java.util.Scanner;
 import services.UsuarioServicio;
+import services.Validaciones;
 
 /**
  *
@@ -63,12 +64,22 @@ public class UsuarioMenu {
         try {
             System.out.print("Nombre: ");
             String nombre = sc.nextLine().trim();
+            while (nombre.isEmpty()) {
+                System.out.println("Error: El nombre del Usuario es obligatorio.");
+                System.out.print("Nombre: ");
+                nombre = sc.nextLine().trim();
+            }
 
             System.out.print("Apellido: ");
             String apellido = sc.nextLine().trim();
 
             System.out.print("Mail: ");
             String mail = sc.nextLine().trim();
+            while (mail.isEmpty() || !mail.contains("@") || !mail.contains(".")) {
+                System.out.println("Error: El mail es obligatorio y debe tener un formato válido (ejemplo@dominio.com).");
+                System.out.print("Mail: ");
+                mail = sc.nextLine().trim();
+            }
 
             System.out.print("Celular: ");
             String celular = sc.nextLine().trim();
@@ -88,22 +99,30 @@ public class UsuarioMenu {
     }
     
     private Rol pedirRol(){
-        System.out.println("Rol: 1) ADMIN  2) USUARIO");
-        System.out.print("Seleccione: ");
-        String opcion = sc.nextLine().trim();
-        if (opcion.equals("1")) {
-            return Rol.ADMIN;
+        String opcion = "";
+        boolean opcionValida = false;
+    
+        while (!opcionValida) {
+            System.out.println("Rol: 1) ADMIN  2) USUARIO");
+            System.out.print("Seleccione: ");
+            opcion = sc.nextLine().trim();
+        
+            if (opcion.equals("1") || opcion.equals("2")) {
+                opcionValida = true; // Rompe el bucle si la opción es correcta
+            } else {
+                System.out.println("\n[Error] Opción inválida. Debe seleccionar 1 o 2.\n");
+            }
         }
-        else if (opcion.equals("2")) {
-            return Rol.USUARIO;
-        } else {
-            System.out.println("Opción inválida, se asigna USUARIO por defecto.");
-        }
-        return Rol.USUARIO;
+    
+        // Al salir del bucle, sabemos con total certeza que es "1" o "2"
+        return opcion.equals("1") ? Rol.ADMIN : Rol.USUARIO;
     }
     
     
     private void editar(){
+        if (Validaciones.esListaVacia(usuarioServicio.listar(), "No hay usuarios cargadas en el sistema para editar.")) {
+            return; 
+        }
         listar(); //para traerme el listado de los usuarios
         try {
             System.out.println("Ingrese el id del usuario a editar");
@@ -143,6 +162,9 @@ public class UsuarioMenu {
     }
     
     private void eliminar(){
+        if (Validaciones.esListaVacia(usuarioServicio.listar(), "No hay usuarios cargadas en el sistema para eliminar.")) {
+            return; 
+        }
         listar();
         try {
             System.out.print("Ingrese el id del usuario a eliminar: ");

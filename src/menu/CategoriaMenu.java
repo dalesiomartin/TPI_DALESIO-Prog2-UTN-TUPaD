@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 import services.CategoriaServicio;
 import services.ProductoServicio;
+import services.Validaciones;
 
 /**
  *
@@ -78,6 +79,9 @@ public class CategoriaMenu {
     }
     
     private void editar(){
+        if (Validaciones.esListaVacia(categoriaServicio.listar(), "No hay categorías cargadas en el sistema para editar.")) {
+            return; 
+        }
         listar();
         try {
             System.out.print("Ingrese el id de la categoría a editar: ");
@@ -104,6 +108,9 @@ public class CategoriaMenu {
 
     }
     private void eliminar(){
+        if (Validaciones.esListaVacia(categoriaServicio.listar(), "No hay categorías cargadas en el sistema para eliminar.")) {
+            return; 
+        }   
         listar();
         try {
             System.out.print("Ingrese el id de la categoría a eliminar: ");
