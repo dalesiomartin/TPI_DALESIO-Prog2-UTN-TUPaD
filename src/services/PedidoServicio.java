@@ -12,7 +12,6 @@ import enums.FormaPago;
 import exceptions.EntidadNoEncontradaException;
 import exceptions.StockInvalidoException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +65,8 @@ public class PedidoServicio {
     
     //Paso2: Agrega un detalle al pedido que se está armando (todavía no confirmado).
     public void agregarDetalle(Pedido pedido, int cantidad, Producto producto){
-        if (!Validaciones.cantidadValida(cantidad) || cantidad == 0) {
+        
+        if (!Validaciones.cantidadPedidoValida(cantidad)) {
             throw new StockInvalidoException("La cantidad debe ser mayor a 0");
         }
         //control de stock
@@ -114,9 +114,9 @@ public class PedidoServicio {
     public void eliminar(Long id){
         Pedido pedido = buscarPedPorID(id);
         pedido.setEliminado(true);
-//        for (var detalle : pedido.getDetalles()) {
-//            detalle.setEliminado(true);
-//        }
+        for (var detalle : pedido.getDetalles()) {
+            detalle.setEliminado(true);
+        }
     }
     
     

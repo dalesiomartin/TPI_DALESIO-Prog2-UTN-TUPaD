@@ -22,8 +22,13 @@ public class Validaciones {
         return num >= 0; //!= null, ==caracteres
     }
     
-    public static boolean cantidadValida(int cant){
+    public static boolean stockValido(int cant){
         return cant >= 0;
+    }
+    
+    // Para DETALLE PEDIDO (cantidad debe ser mayor a 0)
+    public static boolean cantidadPedidoValida(int cantidad){
+        return cantidad > 0;
     }
     
 }

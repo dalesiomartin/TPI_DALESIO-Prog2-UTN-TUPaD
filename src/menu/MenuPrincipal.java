@@ -62,7 +62,6 @@ public class MenuPrincipal {
                 case "0":
                     salir = true;
                     System.out.println("Saliendo del sistema...");
-                    new CategoriaMenu(categoriaServicio, productoServicio,sc).mostrar();
                     break;
                 default:
                     System.out.println("Opción inválida.");
