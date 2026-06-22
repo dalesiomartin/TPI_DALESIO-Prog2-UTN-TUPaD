@@ -33,6 +33,10 @@ public class Validaciones {
         return cantidad > 0;
     }
     
+    public static boolean mailValido(String mail) {
+        return textoValido(mail) && mail.contains("@") && mail.contains(".");
+    }
+    
     /**
      * MÉTODO GENÉRICO UNIFICADO
      * Acepta una lista de cualquier entidad que herede de la clase Base.

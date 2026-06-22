@@ -49,15 +49,16 @@ public class UsuarioServicio {
             throw new IllegalArgumentException("El apellido del Usuario es obligatorio");
         }
         
-        //3° valido mail y que sea unico
-        if (!Validaciones.textoValido(mail)) {
-            throw new IllegalArgumentException("El mail del Usuario es obligatorio");
-        }      
+        // 3° valido formato de mail (antes solo se validaba en el Menu)
+        if (!Validaciones.mailValido(mail)) {
+            throw new IllegalArgumentException("El mail es obligatorio y debe tener un formato válido (ejemplo@dominio.com)");
+        }
         
+        // 4° valido que el mail sea único
         validarMailUnico(mail, null);
         
         
-        Usuario nuevo = new Usuario(nombre, apellido, mail, celular, contrasenia, rol, contadorId++, false, LocalDateTime.now());
+        Usuario nuevo = new Usuario(nombre, apellido, mail.trim().toLowerCase(), celular, contrasenia, rol, contadorId++, false, LocalDateTime.now());
         usuarios.add(nuevo);
         return nuevo;
     
@@ -76,14 +77,17 @@ public class UsuarioServicio {
                         String celular, Rol rol){
         Usuario usuario = buscarUserPorID(id);
         
-         if (Validaciones.textoValido(nombre)) {
+        if (Validaciones.textoValido(nombre)) {
             usuario.setNombre(nombre);
         }
         if (Validaciones.textoValido(apellido)) {
             usuario.setApellido(apellido);
         }
         if (Validaciones.textoValido(mail)) {
-            validarMailUnico(mail, id); 
+            if (!Validaciones.mailValido(mail)) {
+                throw new IllegalArgumentException("El mail debe tener un formato válido (ejemplo@dominio.com)");
+            }
+            validarMailUnico(mail, id);
             usuario.setMail(mail.trim().toLowerCase());
         }
         if (Validaciones.textoValido(celular)) {
@@ -98,7 +102,6 @@ public class UsuarioServicio {
     public void eliminar(Long id){
         Usuario usuario = buscarUserPorID(id);
         usuario.setEliminado(true);
-        
         //Pedidos existentes del usuario deben seguir pudiendo consultarse (historial).
     
     }
@@ -110,7 +113,6 @@ public class UsuarioServicio {
                 throw new IllegalArgumentException("Ya existe un usuario con el mail: " + mail);
             }
         }
-    
     }
 
 }
