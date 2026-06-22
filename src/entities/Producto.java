@@ -92,7 +92,8 @@ public class Producto extends Base{
 
     @Override
     public String toString() {
-        return String.format("%s ($%.2f)", nombre, precio);
+        String estadoDisp = disponible ? "" : " [NO DISPONIBLE]";
+        return String.format("%s ($%.2f)%s", nombre, precio, estadoDisp);
     }
     
     

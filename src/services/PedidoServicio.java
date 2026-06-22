@@ -69,6 +69,9 @@ public class PedidoServicio {
         if (!Validaciones.cantidadPedidoValida(cantidad)) {
             throw new StockInvalidoException("La cantidad debe ser mayor a 0");
         }
+        if (!producto.isDisponible()) {
+            throw new StockInvalidoException("El producto '" + producto.getNombre() + "' no se encuentra disponible para la venta actualmente.");
+        }
         //control de stock
         if (producto.getStock()< cantidad) {
             throw new StockInvalidoException("Stock insuficiente para "+ producto.getNombre() +

@@ -43,43 +43,9 @@ public class Main {
         
         menuPrincipal.iniciar();
 
-        
-        //MOSTRAR LA INFORMACION DE LOS PEDIDOS POR USUARIO
-        //mostrarInfo(listaUsuarios);
-        
-        
-    
+      
     }
     
-//    public static void mostrarInfo(List<Usuario> listaUsuarios ){    
-//        
-//        for (Usuario listaUser : listaUsuarios) {
-//            System.out.println("==============================================================================");
-//            System.out.println(listaUser);
-//            System.out.println("==============================================================================");  
-//            
-//            double acumUsuario = 0;
-//            
-//            for (Pedido ped : listaUser.getPedidos()) {
-//                ped.calcularTotal();
-//                System.out.println(ped);
-//                System.out.println("-----------------------------------------------------------------------"); 
-//                               
-//                for (DetallePedido det : ped.getDetalles()) {
-//                     System.out.println("  " + det);
-//                }
-//                
-//                System.out.printf("TOTAL DEL PEDIDO: $%.2f%n", ped.getTotal());
-//                acumUsuario += ped.getTotal();
-//                System.out.println("-----------------------------------------------------------------------\n");
-//            }
-//            System.out.printf("TOTAL ACUMULADO del usuario: $%.2f%n", acumUsuario);
-//            System.out.println("==============================================================================");
-//            System.out.println("\n*************************************************************************************************\n");
-//        }
-//
-//    }
-//    
     
 }
 

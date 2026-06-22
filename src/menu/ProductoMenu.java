@@ -91,7 +91,7 @@ public class ProductoMenu {
     }
     
     private void crear() {
-        listarCategoriasDisponibles();
+        
         try {
             System.out.print("Nombre: ");
             String nombre = sc.nextLine().trim();
@@ -110,7 +110,8 @@ public class ProductoMenu {
 
             System.out.print("¿Disponible? (S/N): ");
             boolean disponible = sc.nextLine().trim().equalsIgnoreCase("S");
-
+            
+            listarCategoriasDisponibles();
             System.out.print("Id de la categoría: ");
             Long categoriaId = Long.parseLong(sc.nextLine().trim());
 
