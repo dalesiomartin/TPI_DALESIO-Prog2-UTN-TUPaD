@@ -78,6 +78,8 @@ public class PedidoMenu {
     
     private void crearPedidoConDetalles(){
         // Paso 1: seleccionar usuario
+        listarUsuariosDisponibles(); 
+        
         Usuario usuario;
         try {
             System.out.print("Ingrese el id del usuario que realiza el pedido: ");
@@ -101,7 +103,10 @@ public class PedidoMenu {
         boolean seguirCargando = true;
         boolean huboError = false;
         
-        while (seguirCargando) {            
+        while (seguirCargando) { 
+            
+            listarProductosDisponibles();
+            
             System.out.print("Ingrese id del producto a agregar: ");
             Long productoId;
             try {
@@ -234,6 +239,29 @@ public class PedidoMenu {
     }
     
     
+    private void listarUsuariosDisponibles() {
+        List<Usuario> usuarios = usuarioServicio.listar();
+        if (usuarios.isEmpty()) {
+            System.out.println("(No hay usuarios cargados. Cree un usuario antes de continuar.)");
+            return;
+        }
+        System.out.println("Usuarios disponibles:");
+        for (Usuario u : usuarios) {
+            System.out.println("  " + u.getId() + " - " + u.getNombre() + " " + u.getApellido());
+        }
+    }
+    
+     private void listarProductosDisponibles() {
+        List<Producto> productos = productoServicio.listar();
+        if (productos.isEmpty()) {
+            System.out.println("(No hay productos cargados. Cree un producto antes de continuar.)");
+            return;
+        }
+        System.out.println("Productos disponibles:");
+        for (Producto p : productos) {
+            System.out.println("  " + p.getId() + " - " + p);
+        }
+    }
     
     
     

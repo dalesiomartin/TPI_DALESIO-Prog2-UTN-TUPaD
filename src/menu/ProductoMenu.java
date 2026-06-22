@@ -22,7 +22,7 @@ public class ProductoMenu {
     private CategoriaServicio categoriaServicio;
     private Scanner sc;
 
-    public ProductoMenu(ProductoServicio productoServicio, CategoriaServicio categoriaService, Scanner sc) {
+    public ProductoMenu(ProductoServicio productoServicio, CategoriaServicio categoriaServicio, Scanner sc) {
         this.productoServicio = productoServicio;
         this.categoriaServicio = categoriaServicio;
         this.sc = sc;
@@ -224,6 +224,7 @@ public class ProductoMenu {
         }
     }
     
+   
     
       
       

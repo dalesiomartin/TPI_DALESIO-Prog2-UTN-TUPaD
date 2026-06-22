@@ -20,8 +20,8 @@ public class CategoriaMenu {
     private ProductoServicio productoServicio;
     private Scanner sc;
 
-    public CategoriaMenu(CategoriaServicio categoriaService, ProductoServicio productoServicio, Scanner sc) {
-        this.categoriaServicio = categoriaService;
+    public CategoriaMenu(CategoriaServicio categoriaServicio, ProductoServicio productoServicio, Scanner sc) {
+        this.categoriaServicio = categoriaServicio;
         this.productoServicio = productoServicio;
         this.sc = sc;
     }
