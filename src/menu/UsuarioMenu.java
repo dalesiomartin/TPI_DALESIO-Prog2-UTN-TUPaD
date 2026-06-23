@@ -64,22 +64,12 @@ public class UsuarioMenu {
         try {
             System.out.print("Nombre: ");
             String nombre = sc.nextLine().trim();
-//            while (nombre.isEmpty()) {
-//                System.out.println("Error: El nombre del Usuario es obligatorio.");
-//                System.out.print("Nombre: ");
-//                nombre = sc.nextLine().trim();
-//            }
 
             System.out.print("Apellido: ");
             String apellido = sc.nextLine().trim();
 
             System.out.print("Mail: ");
             String mail = sc.nextLine().trim();
-//            while (mail.isEmpty() || !mail.contains("@") || !mail.contains(".")) {
-//                System.out.println("Error: El mail es obligatorio y debe tener un formato válido (ejemplo@dominio.com).");
-//                System.out.print("Mail: ");
-//                mail = sc.nextLine().trim();
-//            }
 
             System.out.print("Celular: ");
             String celular = sc.nextLine().trim();
@@ -114,7 +104,7 @@ public class UsuarioMenu {
             }
         }
     
-        // Al salir del bucle, sabemos con total certeza que es "1" o "2"
+        // Al salir del bucle, sabemos que es "1" o "2"
         return opcion.equals("1") ? Rol.ADMIN : Rol.USUARIO;
     }
     
